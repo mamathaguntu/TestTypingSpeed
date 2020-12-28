@@ -51,7 +51,7 @@ function spellCheck() {
 function start() {
   let enteredTxtLen = testArea.value.length;
   //start the timer
-  if ((enteredTxtLen === 0 || enteredTxtLen.length !== originText.length) && !timerOn) {
+  if (enteredTxtLen === 0 && !timerOn) {
     timerOn = true;
     timeInterval = setInterval(startTimer, 10)
   }
