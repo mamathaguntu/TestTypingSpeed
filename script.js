@@ -4,10 +4,12 @@ const testArea = document.querySelector("#test-area");
 const originText = document.querySelector("#origin-text p").innerHTML;
 const resetButton = document.querySelector("#reset");
 const theTimer = document.querySelector(".timer");
+const errorCount = document.querySelector(".errorCt");
 
 var timer = [0, 0, 0, 0]; //min, sec , hundredth sec, thousandth sec
 var timeInterval;
 var timerOn = false;
+var errorCt = 0;
 
 function startTimer() {
   let currentTime = leadingZeros(timer[0]) + ":" + leadingZeros(timer[1]) + ":" + leadingZeros(timer[2]);
@@ -43,6 +45,8 @@ function spellCheck() {
     if (enteredTxt == checkString) {
       testWrapper.style.borderColor = 'blue';
     } else {
+      errorCt++;
+      errorCount.innerHTML = errorCt;
       testWrapper.style.borderColor = 'red';
     }
   }

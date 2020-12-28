@@ -172,6 +172,10 @@ body {
     font-size: 3em;
     font-weight: bold;
 }
+.errorCt {
+    font-size: 3em;
+    font-weight: bold;
+}
 
 #reset {
     padding: .5em 1em;
