@@ -37,6 +37,7 @@ function spellCheck() {
   if (enteredTxt == originText) {
     testWrapper.style.borderColor = 'green';
     timerOn = false;
+    testArea.disabled = true;
     clearInterval(timeInterval);
   } else {
     if (enteredTxt == checkString) {
@@ -66,6 +67,7 @@ function reset() {
   timerOn = false;
   theTimer.innerHTML = "00:00:00";
   testArea.value = "";
+  testArea.disabled = false;
   testWrapper.style.borderColor = "grey";
 }
 testArea.addEventListener("keypress", start, false);
