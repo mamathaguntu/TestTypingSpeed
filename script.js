@@ -1,15 +1,19 @@
 // @author mamathaguntu
 const testWrapper = document.querySelector(".test-wrapper");
 const testArea = document.querySelector("#test-area");
-const originText = document.querySelector("#origin-text p").innerHTML;
+const originText = document.querySelector("#origin-text");
 const resetButton = document.querySelector("#reset");
 const theTimer = document.querySelector(".timer");
 const errorCount = document.querySelector(".errorCt");
 
+var diffTextVal = ["This is a typing test !", "Can you read this in any order ?", "Try to beat your own score !", "Have fun ! happy Typing !!",
+  "Do you think this acts as a typing practice ?", "I loVE holiDays!!", "LoVing weather todaY !", "Happy New yEAR!", "Thank you for this !"];
 var timer = [0, 0, 0, 0]; //min, sec , hundredth sec, thousandth sec
 var timeInterval;
 var timerOn = false;
 var errorCt = 0;
+
+originText.innerHTML = diffTextVal[Math.ceil(Math.random() * 8)];
 
 function startTimer() {
   let currentTime = leadingZeros(timer[0]) + ":" + leadingZeros(timer[1]) + ":" + leadingZeros(timer[2]);
@@ -34,9 +38,9 @@ function spellCheck() {
 
   //check if the entered text matches the original text
 
-  let checkString = originText.substr(0, enteredTxt.length);
+  let checkString = originText.innerHTML.substr(0, enteredTxt.length);
 
-  if (enteredTxt == originText) {
+  if (enteredTxt == originText.innerHTML) {
     testWrapper.style.borderColor = 'green';
     timerOn = false;
     testArea.disabled = true;
@@ -54,6 +58,8 @@ function spellCheck() {
 }
 
 function start() {
+
+  console.log(originText.innerHTML);
   let enteredTxtLen = testArea.value.length;
   //start the timer
   if (enteredTxtLen === 0 && !timerOn) {
@@ -64,6 +70,7 @@ function start() {
 }
 
 function reset() {
+  originText.innerHTML = diffTextVal[Math.ceil(Math.random() * 8)];
   console.log("reset button has been pressed");
   clearInterval(timeInterval);
   timeInterval = null;

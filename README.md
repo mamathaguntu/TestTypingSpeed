@@ -3,6 +3,8 @@
 - Test your typing speed
 - Timer starts when you start typing and stops only when the text you entered matches exactly with the provided text.
 
+## App link : https://master.d3eg38ppke0x0t.amplifyapp.com/
+
 - Initial page
 
 ![image](https://user-images.githubusercontent.com/2658837/103202481-653a7400-48a7-11eb-9b72-440cd3b54e4b.png)
