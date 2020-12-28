@@ -6,6 +6,7 @@ const resetButton = document.querySelector("#reset");
 const theTimer = document.querySelector(".timer");
 
 var timer = [0, 0, 0, 0]; //min, sec , hundredth sec, thousandth sec
+var timeInterval;
 
 function startTimer() {
   let currentTime = leadingZeros(timer[0]) + ":" + leadingZeros(timer[1]) + ":" + leadingZeros(timer[2]);
@@ -33,7 +34,17 @@ function stopTimer() {
 
 function spellCheck() {
   let enteredTxt = testArea.value;
-
+  //check if the entered text matches the original text
+  let checkString = originText.substr(0, enteredTxt.length);
+  if (enteredTxt == originText) {
+    testWrapper.style.borderColor = '#429890';
+  } else {
+    if (enteredTxt == checkString) {
+      testWrapper.style.borderColor = '#65CCF3';
+    } else {
+      testWrapper.style.borderColor = '#E95D0F';
+    }
+  }
   console.log(enteredTxt);
 }
 
@@ -41,7 +52,7 @@ function start() {
   let enteredTxtLen = testArea.value.length;
   //start the timer
   if (enteredTxtLen === 0) {
-    setInterval(startTimer, 10)
+    timeInterval = setInterval(startTimer, 10)
   }
   console.log(enteredTxtLen);
 }
