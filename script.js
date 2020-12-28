@@ -7,6 +7,7 @@ const theTimer = document.querySelector(".timer");
 
 var timer = [0, 0, 0, 0]; //min, sec , hundredth sec, thousandth sec
 var timeInterval;
+var timerOn = false;
 
 function startTimer() {
   let currentTime = leadingZeros(timer[0]) + ":" + leadingZeros(timer[1]) + ":" + leadingZeros(timer[2]);
@@ -26,23 +27,22 @@ function leadingZeros(time) {
   return time;
 }
 
-function stopTimer() {
-  if (originText.value === testArea.value) {
-
-  }
-}
-
 function spellCheck() {
   let enteredTxt = testArea.value;
+
   //check if the entered text matches the original text
+
   let checkString = originText.substr(0, enteredTxt.length);
+
   if (enteredTxt == originText) {
-    testWrapper.style.borderColor = '#429890';
+    testWrapper.style.borderColor = 'green';
+    timerOn = false;
+    clearInterval(timeInterval);
   } else {
     if (enteredTxt == checkString) {
-      testWrapper.style.borderColor = '#65CCF3';
+      testWrapper.style.borderColor = 'blue';
     } else {
-      testWrapper.style.borderColor = '#E95D0F';
+      testWrapper.style.borderColor = 'red';
     }
   }
   console.log(enteredTxt);
@@ -51,7 +51,8 @@ function spellCheck() {
 function start() {
   let enteredTxtLen = testArea.value.length;
   //start the timer
-  if (enteredTxtLen === 0) {
+  if ((enteredTxtLen === 0 || enteredTxtLen.length !== originText.length) && !timerOn) {
+    timerOn = true;
     timeInterval = setInterval(startTimer, 10)
   }
   console.log(enteredTxtLen);
@@ -59,6 +60,13 @@ function start() {
 
 function reset() {
   console.log("reset button has been pressed");
+  clearInterval(timeInterval);
+  timeInterval = null;
+  timer = [0, 0, 0, 0];
+  timerOn = false;
+  theTimer.innerHTML = "00:00:00";
+  testArea.value = "";
+  testWrapper.style.borderColor = "grey";
 }
 testArea.addEventListener("keypress", start, false);
 testArea.addEventListener("keyup", spellCheck, false);
